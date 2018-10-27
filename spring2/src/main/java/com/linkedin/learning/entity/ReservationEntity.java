@@ -1,34 +1,40 @@
-package com.linkedin.learning.model.request;
+package com.linkedin.learning.entity;
 
-import org.springframework.format.annotation.DateTimeFormat;
-
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 
-public class ReservationRequest {
+@Entity
+@Table(name = "Reservation")
+public class ReservationEntity {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private Long roomId;
-    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+
+    @NotNull
     private LocalDate checkin;
-    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+
+    @NotNull
     private LocalDate checkout;
 
-    public ReservationRequest() {
-        super();
+    @ManyToOne
+    private RoomEntity roomEntity;
+
+    public ReservationEntity() {
     }
 
-    public ReservationRequest(Long roomId, LocalDate checkin, LocalDate checkout) {
-        this.roomId = roomId;
+    public ReservationEntity(LocalDate checkin, LocalDate checkout) {
         this.checkin = checkin;
         this.checkout = checkout;
     }
 
-    public Long getRoomId() {
-        return roomId;
+    public RoomEntity getRoomEntity() {
+        return roomEntity;
     }
 
-    public void setRoomId(Long roomId) {
-        this.roomId = roomId;
+    public void setRoomEntity(RoomEntity roomEntity) {
+        this.roomEntity = roomEntity;
     }
 
     public Long getId() {

@@ -26,6 +26,10 @@ public class RoomEntity {
 
 	@NotNull
 	private String price;
+
+
+	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
+	private List<ReservationEntity> reservationEntityList;
 	
 	public RoomEntity() {
 		super();
@@ -61,4 +65,19 @@ public class RoomEntity {
 		this.price = price;
 	}
 
+    public List<ReservationEntity> getReservationEntityList() {
+        return reservationEntityList;
+    }
+
+    public void setReservationEntityList(List<ReservationEntity> reservationEntityList) {
+        this.reservationEntityList = reservationEntityList;
+    }
+
+    public void addReservationEntity(ReservationEntity reservationEntity) {
+	    if(null == reservationEntity) {
+	        reservationEntityList = new ArrayList<>();
+        }
+
+        reservationEntityList.add(reservationEntity);
+    }
 }

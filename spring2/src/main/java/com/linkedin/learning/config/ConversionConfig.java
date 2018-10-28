@@ -1,6 +1,6 @@
 package com.linkedin.learning.config;
 
-import com.linkedin.learning.convertor.ReservationEntitytoReservationResponseConverter;
+import com.linkedin.learning.convertor.ReservationEntityToReservationResponseConverter;
 import com.linkedin.learning.convertor.ReservationRequestToReservationEntityConverter;
 import com.linkedin.learning.convertor.RoomEntityToReservableRoomResponseConverter;
 import org.springframework.context.annotation.Bean;
@@ -14,20 +14,20 @@ import java.util.Set;
 
 @Configuration public class ConversionConfig {
 
-        private Set<Converter> getConverters() {
-                Set<Converter> converters = new HashSet<Converter>();
-                converters.add(new RoomEntityToReservableRoomResponseConverter());
-                converters.add(new ReservationRequestToReservationEntityConverter());
-                converters.add(new ReservationEntitytoReservationResponseConverter());
+    private Set<Converter> getConverters() {
+        Set<Converter> converters = new HashSet<Converter>();
+        converters.add(new RoomEntityToReservableRoomResponseConverter());
+        converters.add(new ReservationRequestToReservationEntityConverter());
+        converters.add(new ReservationEntityToReservationResponseConverter());
 
-                return converters;
-        }
+        return converters;
+    }
 
-        @Bean public ConversionService conversionService() {
-                ConversionServiceFactoryBean bean = new ConversionServiceFactoryBean();
-                bean.setConverters(getConverters());
-                bean.afterPropertiesSet();
+    @Bean public ConversionService conversionService() {
+        ConversionServiceFactoryBean bean = new ConversionServiceFactoryBean();
+        bean.setConverters(getConverters());
+        bean.afterPropertiesSet();
 
-                return bean.getObject();
-        }
+        return bean.getObject();
+    }
 }

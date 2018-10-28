@@ -8,17 +8,17 @@ public class ReservableRoomResponse {
 	private Integer roomNumber;
 	private Integer price;
 	private Links links;
-	
+
 	public ReservableRoomResponse() {
 		super();
 	}
-	
+
 	public ReservableRoomResponse(Integer roomNumber, Integer price) {
 		super();
 		this.roomNumber = roomNumber;
 		this.price = price;
 	}
-	
+
 	public Long getId() {
 		return id;
 	}
@@ -43,6 +43,6 @@ public class ReservableRoomResponse {
 	public void setLinks(Links links) {
 		this.links = links;
 	}
-	
-	
+
+
 }

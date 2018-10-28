@@ -18,17 +18,13 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
 
 @RestController
 @RequestMapping(ResourceConstants.ROOM_RESERVATION_V1)
+@CrossOrigin
 public class ReservationResource {
 
     @Autowired
@@ -100,7 +96,7 @@ public class ReservationResource {
     @RequestMapping(path = "/{reservationId}", method = RequestMethod.DELETE)
     public ResponseEntity<Void> deleteReservation(
             @PathVariable
-            long reservationId) {
+                    long reservationId) {
 
         return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
     }

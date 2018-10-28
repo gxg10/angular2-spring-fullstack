@@ -24,16 +24,9 @@ public class ReservationEntity {
     public ReservationEntity() {
     }
 
-    public ReservationEntity(LocalDate checkin, LocalDate checkout) {
+    public ReservationEntity(LocalDate checkin, LocalDate checkout, RoomEntity roomEntity) {
         this.checkin = checkin;
         this.checkout = checkout;
-    }
-
-    public RoomEntity getRoomEntity() {
-        return roomEntity;
-    }
-
-    public void setRoomEntity(RoomEntity roomEntity) {
         this.roomEntity = roomEntity;
     }
 
@@ -59,5 +52,23 @@ public class ReservationEntity {
 
     public void setCheckout(LocalDate checkout) {
         this.checkout = checkout;
+    }
+
+    public RoomEntity getRoomEntity() {
+        return roomEntity;
+    }
+
+    public void setRoomEntity(RoomEntity roomEntity) {
+        this.roomEntity = roomEntity;
+    }
+
+    @Override
+    public String toString() {
+        return "ReservationEntity{" +
+                "id=" + id +
+                ", checkin=" + checkin +
+                ", checkout=" + checkout +
+                ", roomEntity=" + roomEntity +
+                '}';
     }
 }

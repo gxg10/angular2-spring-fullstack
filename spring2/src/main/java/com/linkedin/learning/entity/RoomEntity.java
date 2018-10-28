@@ -17,53 +17,50 @@ import javax.validation.constraints.NotNull;
 @Table(name = "Room")
 public class RoomEntity {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
 
-	@NotNull
-	private Integer roomNumber;
+    @NotNull
+    private Integer roomNumber;
 
-	@NotNull
-	private String price;
+    @NotNull
+    private String price;
 
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
+    private List<ReservationEntity> reservationEntityList;
 
-	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
-	private List<ReservationEntity> reservationEntityList;
-	
-	public RoomEntity() {
-		super();
-	}
+    public RoomEntity() {
+    }
 
-	public Long getId() {
-		return id;
-	}
+    public RoomEntity(Integer roomNumber, String price) {
+        this.roomNumber = roomNumber;
+        this.price = price;
+    }
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+    public Long getId() {
+        return id;
+    }
 
-	public RoomEntity(Integer roomNumber, String price) {
-		super();
-		this.roomNumber = roomNumber;
-		this.price = price;
-	}
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-	public Integer getRoomNumber() {
-		return roomNumber;
-	}
+    public Integer getRoomNumber() {
+        return roomNumber;
+    }
 
-	public void setRoomNumber(Integer roomNumber) {
-		this.roomNumber = roomNumber;
-	}
+    public void setRoomNumber(Integer roomNumber) {
+        this.roomNumber = roomNumber;
+    }
 
-	public String getPrice() {
-		return price;
-	}
+    public String getPrice() {
+        return price;
+    }
 
-	public void setPrice(String price) {
-		this.price = price;
-	}
+    public void setPrice(String price) {
+        this.price = price;
+    }
 
     public List<ReservationEntity> getReservationEntityList() {
         return reservationEntityList;
@@ -74,10 +71,10 @@ public class RoomEntity {
     }
 
     public void addReservationEntity(ReservationEntity reservationEntity) {
-	    if(null == reservationEntity) {
-	        reservationEntityList = new ArrayList<>();
-        }
+        if (null == reservationEntityList)
+            reservationEntityList = new ArrayList<>();
 
         reservationEntityList.add(reservationEntity);
     }
+
 }
